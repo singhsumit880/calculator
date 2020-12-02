@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Cherry+Swash:wght@700&display=swap" rel="stylesheet">
+	<title>Calculator</title>
+	<style>
+		.container{
+			text-align: center;
+			margin-top:23px;
+			width: auto;
+			height: 450px;
+		}
+
+		table{
+			margin: auto;
+		}
+
+		input{
+			border-radius: 21px;
+			border: 5px solid #244624;
+			font-size:34px;
+			height: auto;
+			width: auto;
+		}
+
+		button{
+			border-radius: 20px;
+			font-size: 20px;
+			background: #978fa0;
+			width: 70px;
+			height: 40px;
+			margin: 6px;
+			font-family: 'Cherry Swash', cursive;
+		}
+		button:hover{
+			background-color: black;
+			color: white;
+		}
+
+		.calculator{ 
+			border: 4px solid #13695d;
+			background-color: grey;
+			padding: 23px;
+			border-radius: 53px;
+			display: inline-block;
+			height: 450px;
+			width: 350px;
+			
+		}
+
+		h1{
+			font-size: ;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+	</style>
+</head>
+
+<body  onload="displayDate()">
+	<div class="container">
+		<h1>Simple Calculator</h1>
+		
+
+		<div class="calculator">
+
+			<input style="width: 100%; height: 100px" type="text"  id="result" value="0"/>
+			<p id="demo" style="font-weight: bolder; color: lime; font-size: 15px; font-family: 'Cherry Swash', cursive;"></p>
+			<table>
+				<tr>
+					<td><button type="button" class="btn btn-danger" onclick="operation('(')">(</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation(')')">)</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation('C')">C</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation('%')">%</button></td>
+				</tr>
+				<tr>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('7')">7</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('8')">8</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('9')">9</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation('*')">*</button></td>
+				</tr>
+				<tr>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('4')">4</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('5')">5</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('6')">6</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation('-')">-</button></td>
+				</tr>
+				<tr>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('1')">1</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('2')">2</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('3')">3</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation('+')">+</button></td>
+				</tr>
+				<tr>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('0')">0</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="calculate('.')">.</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation('/')">/</button></td>
+					<td><button type="button" class="btn btn-danger" onclick="operation('=')">=</button></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+	var dispval=0;
+	var previousval=0;
+	var opt='+';
+	var result;
+	function calculate(operand)
+	{
+		debugger;
+		dispval+=operand;
+		document.getElementById('result').value=dispval;
+	}
+	function operation(operator)
+	{
+		if(operator=='C')
+		{
+			dispval='';
+			previousval=0;
+			opt='+';
+			result;
+			document.getElementById('result').value=0;
+		}
+		else{
+			console.log(previousval);
+			switch(opt)
+			{
+				case'+':
+				result= parseFloat(parseFloat(previousval)+parseFloat(dispval));
+				document.getElementById("result").value=result;
+				break;
+				case '-':
+				result=parseFloat(parseFloat(previousval)-parseFloat(dispval));
+				document.getElementById("result").value=result;
+				break;
+				case'*':
+				result= parseFloat(parseFloat(previousval)*parseFloat(dispval));
+				document.getElementById("result").value=result;
+				break;
+				case'/':
+				result= parseFloat(parseFloat(previousval)/parseFloat(dispval));
+				document.getElementById("result").value=result;
+				break;
+				case'=':
+				result= previousval;
+				document.getElementById("result").value=result;
+				break;
+				case'C':
+				document.getElementById("result").value="0";
+				break;
+				case '%':
+				result=parseFloat((parseFloat(previousval)*parseFloat(dispval))/100);
+				document.getElementById("result").value=result;
+				default:
+				break;
+			}
+			dispval="";
+			previousval=result;
+			opt=operator;
+		}
+	}
+
+	function displayDate() {
+		document.getElementById("demo").innerHTML = Date();
+	}
+</script>
+
+</html>
