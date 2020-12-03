@@ -167,7 +167,8 @@
 	}
 
 	function displayDate() {
-		document.getElementById("demo").innerHTML = Date();
+		let date = new Date();
+		demo.innerHTML = date.toLocaleString('en-US', { hour: 'numeric', second:'numeric' ,minute: 'numeric',  hour12: true });
 	}
 </script>
 
